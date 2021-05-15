@@ -70,8 +70,10 @@ def telegram_bot(token):
             pars_info()
             bot.send_message(message.chat.id, "Информация обновлена")
         if message.text.lower() == "поиск":
-            mess = bot.send_message(message.chat.id, "Введите сообщение")
+            mess = bot.send_message(message.chat.id, "Введите название")
             bot.register_next_step_handler(mess, POISK)
+        if (message.text.lower() != "поиск" and message.text.lower() != "обновить" and message.text.lower() != "список"):bot.send_message(
+            message.chat.id, 'Такой команды нет:( \n'"Вот список доступных команд: список, обновить, поиск")
 
     def POISK(message):
         key = message.text
@@ -84,4 +86,5 @@ def telegram_bot(token):
 
 if __name__ == "__main__":
     pars_info()
+
     telegram_bot(token)
